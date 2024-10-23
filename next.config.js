@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
     images: {
         dangerouslyAllowSVG: true,
         formats: ['image/avif', 'image/webp'],
@@ -12,6 +12,7 @@ const nextConfig = {
             },
         ],
     },
+    experimental: {
+        forceSwcTransforms: true,
+    },
 };
-
-module.exports = nextConfig;
