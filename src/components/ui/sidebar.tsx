@@ -1,67 +1,69 @@
-'use client'
-import React from 'react'
-import { Nav } from './nav'
-import {
-    ChevronRight,
-    LayoutDashboard,
-    Settings,
-    ShoppingCart,
-    UsersRound,
-  } from "lucide-react"
-import { Button } from './button'
+'use client';
 
-import { useWindowWidth } from '@react-hook/window-size'
+import React, { useEffect } from 'react';
+import { Nav } from './nav';
+import { ChevronRight, LayoutDashboard, Settings, ShoppingCart, UsersRound } from 'lucide-react';
+import { Button } from './button';
+import { useWindowWidth } from '@react-hook/window-size';
 
-type Props = {}
+type Props = {};
 
 export default function Sidebar({}: Props) {
+    const [isCollapsed, setIsCollapsed] = React.useState(false);
+    const [mobileWidth, setMobileWidth] = React.useState(false);
 
-    const [isCollapsed, setIsCollapsed] = React.useState(false)
+    const onlyWidth = useWindowWidth();
+    // const mobileWidth = onlyWidth < 768
 
-    const onlyWidth = useWindowWidth()
-    const mobileWidth = onlyWidth < 768
+    // let mobileWidth: boolean = false
+    // const mobileWidth = true
 
-    function toggleSidebar(){
-        setIsCollapsed(!isCollapsed)
+    useEffect(() => {
+        setMobileWidth(onlyWidth < 768);
+    }, [onlyWidth]);
+
+    function toggleSidebar() {
+        setIsCollapsed(!isCollapsed);
     }
+
     return (
-        <div className='relative min-w-[80px] border-r px-3 pb-10 pt-24'>
-            {!mobileWidth &&
-                <div className='absolute right-[-20px] top-7'>
-                    <Button variant='secondary' className='rounded-full p-2' onClick={toggleSidebar}>
-                        <ChevronRight/>
+        <div className="relative min-w-[80px] border-r px-3 pb-10 pt-24">
+            {!mobileWidth && (
+                <div className="absolute right-[-20px] top-7">
+                    <Button variant="secondary" className="rounded-full p-2" onClick={toggleSidebar}>
+                        <ChevronRight />
                     </Button>
                 </div>
-            }
+            )}
             <Nav
                 isCollapsed={mobileWidth ? true : isCollapsed}
                 links={[
                     {
-                    title: "Dashboard",
-                    href: "/",
-                    icon: LayoutDashboard,
-                    variant: "default",
+                        title: 'Dashboard',
+                        href: '/',
+                        icon: LayoutDashboard,
+                        variant: 'default',
                     },
                     {
-                    title: "Users",
-                    href: "/users",
-                    icon: UsersRound,
-                    variant: "ghost",
+                        title: 'Users',
+                        href: '/users',
+                        icon: UsersRound,
+                        variant: 'ghost',
                     },
                     {
-                    title: "Orders",
-                    href: "/orders",
-                    icon: ShoppingCart,
-                    variant: "ghost",
+                        title: 'Orders',
+                        href: '/orders',
+                        icon: ShoppingCart,
+                        variant: 'ghost',
                     },
                     {
-                    title: "Settings",
-                    href: "/settings",
-                    icon: Settings,
-                    variant: "ghost",
+                        title: 'Settings',
+                        href: '/settings',
+                        icon: Settings,
+                        variant: 'ghost',
                     },
                 ]}
             />
         </div>
-    )
+    );
 }
