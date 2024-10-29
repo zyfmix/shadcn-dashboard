@@ -1,0 +1,25 @@
+{
+    "envs": [
+        {
+            "name": "local",
+            "ip": "localhost",
+            "api_port": 8801,
+            "rpc_port": 8805,
+            "oo_port": 5080
+        },
+        {
+            "name": "dev",
+            "ip": "1.zus.iirii.com",
+            "api_port": 8001,
+            "rpc_port": 8005,
+            "oo_port": 5080
+        },
+        {
+            "name": "test",
+            "ip": "3.zus.iirii.com",
+            "api_port": 8001,
+            "rpc_port": 8005,
+            "oo_port": 5080
+        }
+    ]
+}
